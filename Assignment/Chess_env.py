@@ -181,8 +181,8 @@ class Chess_Env:
             X=self.Features()
             
             
-        
-        return self.Board, X, allowed_a, R, Done
+        # Always return features so that final states don't crash NN. Same goes for allowed_a
+        return self.Board, self.Features(), np.concatenate([self.a_q1,self.a_k1],0), R, Done
         
         
     # DEFINITION OF THE FEATURES (SEE ALSO ASSIGNMENT DESCRIPTION)
